@@ -62,4 +62,4 @@ training itself is not run on HF Spaces.
 
 ## References
 
-Dataset: [TrashNet](https://github.com/garythung/trashnet) (Thung & Yang, Stanford 2016, MIT License).
+Dataset: [TrashNet](https://github.com/garythung/trashnet) (Thung & Yang, Stanford 2016, MIT License).git init

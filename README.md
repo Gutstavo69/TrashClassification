@@ -26,7 +26,7 @@ This implementation follows the project proposal (`Comvis Proposal.pdf`):
 | RBF SVM, OvO, GridSearchCV, 5-fold CV   | `train_model.ipynb` Section 9                   |
 | Confusion matrix + per-class P/R/F1     | `train_model.ipynb` Section 10                  |
 | Inference latency (target <=200 ms)     | `train_model.ipynb` Section 11                  |
-| Accuracy & F1 learning curves           | `train_model.ipynb` Section 12                  |
+| Accuracy learning curve                 | `train_model.ipynb` Section 12                  |
 
 ## Files
 
@@ -44,8 +44,7 @@ This implementation follows the project proposal (`Comvis Proposal.pdf`):
     ├── label_encoder.joblib
     ├── confusion_matrix.png
     ├── classification_report.txt
-    ├── learning_curve_accuracy.png
-    └── learning_curve_f1.png
+    └── learning_curve.png
 ```
 
 The dataset folders (`paper/`, `glass/`, `plastic/`) live in the project root.
@@ -76,15 +75,15 @@ Then **Cell → Run All**. The notebook runs end to end:
 4. GridSearchCV over `C ∈ {1, 10, 100}` × `gamma ∈ {scale, 0.001, 0.01}`, 5-fold CV, `f1_macro` scoring
 5. Evaluates on the held-out test set (classification report + confusion matrix)
 6. Measures inference latency on the test set and reports mean / median / p95 against the proposal's <=200 ms target
-7. Plots accuracy and F1-macro learning curves
-8. Saves the SVM, scaler, label encoder, and the test split to `models/`
+7. Plots the accuracy learning curve
+8. Refits the best hyperparameters with `probability=True` and saves the SVM, scaler, label encoder, and test split to `models/`
 
 When it finishes, `models/` will contain:
 
 - `svm_model.joblib`, `scaler.joblib`, `label_encoder.joblib` — needed by `app.py`
 - `test_split.joblib` — held-out features + labels
 - `confusion_matrix.png`, `classification_report.txt`
-- `learning_curve_accuracy.png`, `learning_curve_f1.png`
+- `learning_curve.png`
 
 ### 2. Quick prediction check — `predict_demo.ipynb`
 
